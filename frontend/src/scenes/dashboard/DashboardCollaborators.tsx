@@ -145,17 +145,21 @@ function CollaboratorRow({
             >
                 <div className="CollaboratorRow__details">
                     <span>{!wasInvited ? <b>{privilegeLevelName}</b> : privilegeLevelName}</span>
-                    {deleteCollaborator && (
-                        <LemonButton
-                            icon={<IconCancel />}
-                            onClick={() => deleteCollaborator(user.uuid)}
-                            type="stealth"
-                            tooltip={wasInvited ? 'Remove invited collaborator' : null}
-                            disabled={!wasInvited}
-                            status="danger"
-                            size="small"
-                        />
-                    )}
+                    <LemonButton
+                        icon={<IconCancel />}
+                        onClick={deleteCollaborator && (() => deleteCollaborator(user.uuid))}
+                        type="stealth"
+                        tooltip={
+                            !deleteCollaborator
+                                ? "You don't have permission to manage this dashboard"
+                                : wasInvited
+                                ? 'Remove invited collaborator'
+                                : 'Admins need to be demoted before they can be removed as collaborators'
+                        }
+                        disabled={!deleteCollaborator || !wasInvited}
+                        status="danger"
+                        size="small"
+                    />
                 </div>
             </Tooltip>
         </div>
