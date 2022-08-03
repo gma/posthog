@@ -24,9 +24,7 @@ export function CompareFilter(): JSX.Element | null {
             disabled={disabled}
             label={'Compare to previous time period'}
             bordered
-            rowProps={{
-                size: 'small',
-            }}
+            size="small"
         />
     )
 }

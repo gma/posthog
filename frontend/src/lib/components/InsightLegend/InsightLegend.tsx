@@ -64,10 +64,9 @@ export function InsightLegend({ horizontal, readOnly = false }: InsightLegendPro
                             <div key={item.id} className="InsightLegendMenu-item">
                                 <LemonCheckbox
                                     className="InsightLegendMenu-item-inner"
-                                    color={getSeriesColor(item.id, !!filters.compare)}
                                     checked={!hiddenLegendKeys[item.id]}
                                     onChange={() => toggleVisibility(item.id)}
-                                    rowProps={{ fullWidth: true }}
+                                    fullWidth
                                     label={
                                         <InsightLabel
                                             key={item.id}

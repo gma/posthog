@@ -212,7 +212,7 @@ export function FeatureFlag({ id }: { id?: string } = {}): JSX.Element {
                                                 </div>
                                             }
                                             onChange={() => onChange(!value)}
-                                            rowProps={{ fullWidth: true }}
+                                            fullWidth
                                             checked={value}
                                         />
                                         <div

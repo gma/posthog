@@ -240,7 +240,7 @@ export function ActionEdit({ action: loadedAction, id, onSave, temporaryToken }:
                                     id="webhook-checkbox"
                                     checked={!!value}
                                     onChange={(e) => onChange(e.target.checked)}
-                                    rowProps={{ fullWidth: true }}
+                                    fullWidth
                                     disabled={!slackEnabled}
                                     label={
                                         <>

@@ -11,11 +11,10 @@ export interface LemonCheckboxProps {
     label?: string | JSX.Element
     id?: string
     className?: string
-    style?: React.CSSProperties
-    /** @deprecated See https://github.com/PostHog/posthog/pull/9357#pullrequestreview-933783868. */
-    color?: string
-    rowProps?: LemonRowProps<'div'>
     bordered?: boolean
+    fullWidth?: boolean
+    size?: LemonRowProps['size']
+    title?: string
 }
 
 export interface BoxCSSProperties extends React.CSSProperties {
@@ -25,10 +24,14 @@ export interface BoxCSSProperties extends React.CSSProperties {
 /** Counter used for collision-less automatic checkbox IDs. */
 let checkboxCounter = 0
 
-/** `LemonRow`-based checkbox component for use in lists or forms.
+/** Checkboxes allow users to select one or more items from a set.
  *
- * As opposed to switches, checkboxes don't always have to result in the change being applied immediately.
- * E.g. the change may only be applied when the user clicks "Save" in a form.
+ * Checkboxes can turn an option on or off.
+ * Checkboxes can have a parent-child relationship with other checkboxes.
+ *
+ * When the parent checkbox is checked, all child checkboxes are checked.
+ *
+ * If some, but not all, child checkboxes are checked, the parent checkbox becomes an indeterminate checkbox.
  */
 export function LemonCheckbox({
     checked,
@@ -38,10 +41,10 @@ export function LemonCheckbox({
     label,
     id: rawId,
     className,
-    color,
-    rowProps,
-    style,
     bordered,
+    fullWidth,
+    size,
+    title,
 }: LemonCheckboxProps): JSX.Element {
     const indeterminate = checked === 'indeterminate'
 
@@ -71,7 +74,6 @@ export function LemonCheckbox({
                 className
             )}
             disabled={disabled}
-            style={style}
             icon={
                 <>
                     <input
@@ -87,18 +89,16 @@ export function LemonCheckbox({
                         id={id}
                         disabled={disabled}
                     />
-                    <label
-                        htmlFor={id}
-                        className="LemonCheckbox__box"
-                        style={color ? ({ '--box-color': color } as BoxCSSProperties) : {}}
-                    >
+                    <label htmlFor={id} className="LemonCheckbox__box">
                         <svg fill="none" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
                             <path d={!wasIndeterminateLast ? 'm3.5 8 3 3 6-6' : 'm3.5 8h9'} strokeWidth="2" />
                         </svg>
                     </label>
                 </>
             }
-            {...rowProps}
+            fullWidth={fullWidth}
+            size={size}
+            title={title}
         >
             {label && (
                 <label className="LemonCheckbox__label" htmlFor={id}>

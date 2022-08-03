@@ -54,6 +54,10 @@
         margin: #{$space/4}rem;
     }
 
+    .-m-#{$space} {
+        margin: -#{$space/4}rem;
+    }
+
     .mx-#{$space} {
         margin-left: #{$space/4}rem;
         margin-right: #{$space/4}rem;

@@ -129,7 +129,6 @@ export function InsightsTable({
             render: function RenderCheckbox(_, item: IndexedTrendResult) {
                 return (
                     <LemonCheckbox
-                        color={getSeriesColor(item.id, !!filters.compare)}
                         checked={!hiddenLegendKeys[item.id]}
                         onChange={() => toggleVisibility(item.id)}
                         disabled={!canCheckUncheckSeries}

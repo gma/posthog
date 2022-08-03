@@ -137,7 +137,7 @@ export function AnnotationMarker({
                     setApplyAll(e.target.checked)
                 }}
                 label="Create for all charts"
-                rowProps={{ fullWidth: true }}
+                fullWidth
             />
             <div className="flex justify-end gap-2">
                 <LemonButton
